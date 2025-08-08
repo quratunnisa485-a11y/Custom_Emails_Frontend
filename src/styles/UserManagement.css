@@ -1,0 +1,35 @@
+.main-background {
+  background-image: url('/usermgmt-background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 50vh;
+  padding: 30px;
+  
+}
+
+.data-grid-style {
+  background-color: #8ac8f1cc; 
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.MuiDataGrid-columnHeaders {
+  background-color: #ec8c0d !important;
+  color: rgb(0, 0, 0) !important;
+  font-weight: bold !important;
+}
+
+.MuiDataGrid-cell {
+  background-color: #5f80da;
+  color:  rgb(255, 255, 254);
+}
+.main-background {
+  background-color: #f8f6f6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.data-grid-style .MuiDataGrid-root {
+  background-color: rgb(236, 233, 233);
+}
