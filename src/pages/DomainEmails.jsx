@@ -9,9 +9,12 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import * as XLSX from "xlsx";
 import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function DomainEmails() {
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -188,31 +191,23 @@ export default function DomainEmails() {
     {
       field: "actions",
       headerName: "Actions",
+      type: "actions",
       width: 200,
-      renderCell: (params) => (
-        <>
-          <Button
-            onClick={() => handleEdit(params.row)}
-            variant="outlined"
-            size="small"
-            sx={{ mr: 1 }}
-            color="black"
-          >
-            Edit
-          </Button>
-          <Button
-            onClick={() => {
-              setRowToDelete(params.row);
-              setDeleteDialogOpen(true);
-            }}
-            variant="outlined"
-            size="small"
-            color="error"
-          >
-            Delete
-          </Button>
-        </>
-      ),
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<EditIcon />}
+          label="Edit"
+          onClick={() => handleEdit(params.row)}
+        />,
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete"
+          onClick={() => {
+            setRowToDelete(params.row);
+            setDeleteDialogOpen(true);
+          }}
+        />,
+      ],
     },
   ];
 
