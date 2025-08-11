@@ -114,10 +114,10 @@ export default function UserManagement() {
 
   const handleVerifyCredentials = () => {
     axios
-      .post("http://localhost:8081/verify-credentials", {
-        Email: authEmail,
-        Password: authPassword,
-      })
+      .post(`${backendURL}/verify-credentials`, {
+      Email: authEmail,
+      Password: authPassword,
+    })
       .then((res) => {
         if (res.data.success) {
           if (authDialog.action === "edit") {
