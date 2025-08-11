@@ -30,6 +30,9 @@ import {
 import "../styles/UserManagement.css";
 import axios from "axios";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
   const [openForm, setOpenForm] = useState(false);
@@ -52,7 +55,7 @@ export default function UserManagement() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/user-management")
+      .get(`${backendURL}/user-management`)
       .then((res) => setUsers(res.data))
       .catch((err) => console.error("Failed to load users:", err));
   }, []);
@@ -76,7 +79,7 @@ export default function UserManagement() {
   const handleFormSubmit = () => {
     if (editingUser) {
       axios
-        .put(`http://localhost:8081/user-management/${editingUser.id}`, formData)
+        .put(`${backendURL}/user-management/${editingUser.id}`, formData)
         .then(() => {
           setUsers((prev) =>
             prev.map((u) => (u.id === editingUser.id ? { ...editingUser, ...formData } : u))
@@ -86,7 +89,7 @@ export default function UserManagement() {
         .catch((err) => console.error("Error updating user:", err));
     } else {
       axios
-        .post("http://localhost:8081/user-management", formData)
+        .post(`${backendURL}/user-management`, formData)
         .then((res) => {
           const newUser = {
             id: res.data.id,
@@ -101,7 +104,7 @@ export default function UserManagement() {
 
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8081/user-management/${deleteConfirm.id}`)
+      .delete(`${backendURL}/user-management/${deleteConfirm.id}`)
       .then(() => {
         setUsers((prev) => prev.filter((u) => u.id !== deleteConfirm.id));
         setDeleteConfirm({ open: false, id: null });

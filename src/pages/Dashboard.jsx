@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "./../styles/Dashboard.css";
@@ -30,6 +29,9 @@ ChartJS.register(
   Filler
 );
 
+// Use environment variable for backend URL
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 const Dashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [activeUsers, setActiveUsers] = useState(0);
@@ -46,17 +48,17 @@ const Dashboard = () => {
   const chartRef = useRef();
 
   useEffect(() => {
-    axios.get("http://localhost:8081/api/dashboard/total-users").then((res) => setTotalUsers(res.data.total));
-    axios.get("http://localhost:8081/api/dashboard/active-users").then((res) => setActiveUsers(res.data.active));
-    axios.get("http://localhost:8081/api/dashboard/inactive-users").then((res) => setInactiveUsers(res.data.inactive));
-    axios.get("http://localhost:8081/api/dashboard/role-counts").then((res) => setRoleData(res.data));
-    axios.get("http://localhost:8081/api/dashboard/monthly-signups").then((res) => setSignupStats(res.data));
-    axios.get("http://localhost:8081/api/dashboard/total-verified-senders").then((res) => setVerifiedSenders(res.data.total));
-    axios.get("http://localhost:8081/api/dashboard/email-providers").then((res) => setProviderDistribution(res.data));
-    axios.get("http://localhost:8081/api/dashboard/top-sender-names").then((res) => setTopSenderNames(res.data));
-    axios.get("http://localhost:8081/api/dashboard/domain-email-stats").then((res) => setDomainStats(res.data));
-    axios.get("http://localhost:8081/api/dashboard/top-domains").then((res) => setTopDomains(res.data));
-    axios.get("http://localhost:8081/api/dashboard/daily-email-status").then((res) => setDailyEmailStatus(res.data));
+    axios.get(`${backendURL}/api/dashboard/total-users`).then((res) => setTotalUsers(res.data.total));
+    axios.get(`${backendURL}/api/dashboard/active-users`).then((res) => setActiveUsers(res.data.active));
+    axios.get(`${backendURL}/api/dashboard/inactive-users`).then((res) => setInactiveUsers(res.data.inactive));
+    axios.get(`${backendURL}/api/dashboard/role-counts`).then((res) => setRoleData(res.data));
+    axios.get(`${backendURL}/api/dashboard/monthly-signups`).then((res) => setSignupStats(res.data));
+    axios.get(`${backendURL}/api/dashboard/total-verified-senders`).then((res) => setVerifiedSenders(res.data.total));
+    axios.get(`${backendURL}/api/dashboard/email-providers`).then((res) => setProviderDistribution(res.data));
+    axios.get(`${backendURL}/api/dashboard/top-sender-names`).then((res) => setTopSenderNames(res.data));
+    axios.get(`${backendURL}/api/dashboard/domain-email-stats`).then((res) => setDomainStats(res.data));
+    axios.get(`${backendURL}/api/dashboard/top-domains`).then((res) => setTopDomains(res.data));
+    axios.get(`${backendURL}/api/dashboard/daily-email-status`).then((res) => setDailyEmailStatus(res.data));
   }, []);
 
   const pieData = {
@@ -147,7 +149,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      
       <div className="top-cards">
         <div className="info-card blue">👥 Total Users: {totalUsers}</div>
         <div className="info-card green">🟢 Active Users: {activeUsers}</div>
@@ -192,8 +193,6 @@ const Dashboard = () => {
             }}
           />
         </div>
-
-        
 
         <div className="chart-box">
           <h3>🏢 Top 2 Domains by Email Count</h3>

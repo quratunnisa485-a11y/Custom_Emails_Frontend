@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +12,7 @@ import {
 import "../styles/LoginPage.css";
 
 const Login = () => {
+  const backendURL = import.meta.env.VITE_BACKEND_URL; // your env variable
   const [values, setValues] = useState({ Email: "", Password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8081/login", {
+      const res = await axios.post(`${backendURL}/login`, {
         Email: values.Email,
         Password: values.Password,
       });
@@ -46,7 +46,6 @@ const Login = () => {
     <div className="login-background">
       <img src="/login-background.jpg" alt="Background" className="bg-gif" />
       <div className="content">
-
         <div className="left-message text-center text-md-start mb-4 mb-md-0">
           <h1>Welcome!</h1>
           <p>

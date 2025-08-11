@@ -10,6 +10,8 @@ import {
   MenuItem,
 } from "@mui/material";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 export default function CustomEmails() {
   const [personalEmails, setPersonalEmails] = useState([]);
   const [domainOptions, setDomainOptions] = useState([]);
@@ -20,12 +22,12 @@ export default function CustomEmails() {
   const [selectedDomain, setSelectedDomain] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8081/customemail/senders")
+    fetch(`${backendURL}/customemail/senders`)
       .then((res) => res.json())
       .then(setPersonalEmails)
       .catch((err) => console.error("Failed to fetch personal emails", err));
 
-    fetch("http://localhost:8081/customemail/domains")
+    fetch(`${backendURL}/customemail/domains`)
       .then((res) => res.json())
       .then(setDomainOptions)
       .catch((err) => console.error("Failed to fetch domains", err));
@@ -35,7 +37,7 @@ export default function CustomEmails() {
     if (!selectedEmail) return alert("Select sender email");
     if (!selectedDomain) return alert("Select domain");
 
-    fetch("http://localhost:8081/customemail/send", {
+    fetch(`${backendURL}/customemail/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,8 +52,7 @@ export default function CustomEmails() {
         if (data.success) {
           alert("Email sent successfully!");
 
-          
-          fetch(`http://localhost:8081/domainemails/update-status/${selectedDomain}`, {
+          fetch(`${backendURL}/domainemails/update-status/${selectedDomain}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: "Sent" }),

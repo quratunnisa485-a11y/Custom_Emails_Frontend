@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -16,6 +15,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function PersonalEmails() {
+  const backendURL = import.meta.env.VITE_BACKEND_URL; // Use env variable here
+
   const [openAdd, setOpenAdd] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
@@ -26,7 +27,7 @@ export default function PersonalEmails() {
   }, []);
 
   const fetchEmails = () => {
-    fetch("http://localhost:8081/personalemails")
+    fetch(`${backendURL}/personalemails`)
       .then((res) => res.json())
       .then((data) => {
         const formatted = data.map((item, index) => ({
@@ -44,7 +45,7 @@ export default function PersonalEmails() {
   };
 
   const handleDelete = (email) => {
-    fetch(`http://localhost:8081/personalemails/${email}`, {
+    fetch(`${backendURL}/personalemails/${email}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -133,6 +134,7 @@ export default function PersonalEmails() {
           setRows={setRows}
           rows={rows}
           onClose={() => setOpenAdd(false)}
+          backendURL={backendURL}
         />
       </Dialog>
 
@@ -152,7 +154,7 @@ export default function PersonalEmails() {
   );
 }
 
-function AddOrEditForm({ selectedRow, setRows, rows, onClose }) {
+function AddOrEditForm({ selectedRow, setRows, rows, onClose, backendURL }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -200,8 +202,7 @@ function AddOrEditForm({ selectedRow, setRows, rows, onClose }) {
     }
 
     if (selectedRow) {
-     
-      fetch(`http://localhost:8081/personalemails/${formData.email}`, {
+      fetch(`${backendURL}/personalemails/${formData.email}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -228,8 +229,7 @@ function AddOrEditForm({ selectedRow, setRows, rows, onClose }) {
           setError("Failed to update email");
         });
     } else {
-      
-      fetch("http://localhost:8081/personalemails", {
+      fetch(`${backendURL}/personalemails`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

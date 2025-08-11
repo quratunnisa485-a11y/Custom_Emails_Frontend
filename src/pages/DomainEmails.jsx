@@ -14,6 +14,9 @@ import * as XLSX from "xlsx";
 import axios from "axios";
 
 export default function DomainEmails() {
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const API_URL = backendURL + "/domainemails";
+
   const [rows, setRows] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [editingRow, setEditingRow] = useState(null);
@@ -21,8 +24,6 @@ export default function DomainEmails() {
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [rowToDelete, setRowToDelete] = useState(null);
-
-  const API_URL = "http://localhost:8081/domainemails";
 
   const fetchRows = () => {
     axios.get(API_URL).then((res) => {
@@ -80,11 +81,11 @@ export default function DomainEmails() {
                 },
               ]);
             } else {
-              fetchRows(); 
+              fetchRows();
             }
           })
           .catch(() => {
-            fetchRows(); 
+            fetchRows();
           });
       });
     };
@@ -111,12 +112,12 @@ export default function DomainEmails() {
             { id: res.data.id, domain, emails: email, status: "Pending" },
           ]);
         } else {
-          fetchRows(); 
+          fetchRows();
         }
         form.reset();
       })
       .catch(() => {
-        fetchRows(); 
+        fetchRows();
       });
   };
 
@@ -142,9 +143,7 @@ export default function DomainEmails() {
       .then(() => {
         setRows((prev) =>
           prev.map((row) =>
-            row.id === editingRow.id
-              ? { ...row, emails: updatedEmails }
-              : row
+            row.id === editingRow.id ? { ...row, emails: updatedEmails } : row
           )
         );
         setOpenDialog(false);
