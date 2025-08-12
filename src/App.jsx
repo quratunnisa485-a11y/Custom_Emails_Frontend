@@ -36,7 +36,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img
-          src="/logo.png" // Apna logo path yahan lagao
+          src="/logo.png" 
           alt="Logo"
           className="navbar-logo"
         />
