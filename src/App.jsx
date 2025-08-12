@@ -8,6 +8,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import './Appp.css';
 
 import LoginPage from "./pages/LoginPage";
 import UserManagement from "./pages/UserManagement";
