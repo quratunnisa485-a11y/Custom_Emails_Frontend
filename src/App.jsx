@@ -1,10 +1,9 @@
-
 import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
+  NavLink,
   Navigate,
   useLocation,
   useNavigate,
@@ -33,36 +32,35 @@ function Navbar() {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1rem 2rem",
-        backgroundColor: "#f7f7f7",
-        borderBottom: "1px solid #ccc",
-      }}
-    >
-      <div style={{ display: "flex", gap: "1rem" }}>
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/user-management">User Management</Link>
-        <Link to="/personal-emails">Personal Emails</Link>
-        <Link to="/domain-emails">Domain Emails</Link>
-        <Link to="/custom-emails">Custom Emails</Link>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <img
+          src="/logo.png" // Apna logo path yahan lagao
+          alt="Logo"
+          className="navbar-logo"
+        />
+        <span className="navbar-brand">YourAppName</span>
+        <NavLink to="/dashboard" className="nav-link">
+          Dashboard
+        </NavLink>
+        <NavLink to="/user-management" className="nav-link">
+          User Management
+        </NavLink>
+        <NavLink to="/personal-emails" className="nav-link">
+          Personal Emails
+        </NavLink>
+        <NavLink to="/domain-emails" className="nav-link">
+          Domain Emails
+        </NavLink>
+        <NavLink to="/custom-emails" className="nav-link">
+          Custom Emails
+        </NavLink>
       </div>
-      <button
-        onClick={handleLogout}
-        style={{
-          padding: "0.5rem 1rem",
-          backgroundColor: "#ff4d4f",
-          color: "#fff",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Logout
-      </button>
+      <div className="navbar-right">
+        <button className="sign-in-btn" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </nav>
   );
 }

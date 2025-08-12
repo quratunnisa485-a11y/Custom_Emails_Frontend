@@ -1,3 +1,4 @@
+/* ==== Default styles from your original file ==== */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -40,10 +41,71 @@
 .read-the-docs {
   color: #888;
 }
-html, body {
+
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow: auto;
   font-family: sans-serif;
+}
+
+/* ==== New Navbar Styling ==== */
+.navbar {
+  background-color: #000;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-logo {
+  height: 28px;
+  width: 28px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.nav-link {
+  color: #ccc;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.sign-in-btn {
+  background-color: #0066ff;
+  border: none;
+  padding: 0.4rem 1rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sign-in-btn:hover {
+  background-color: #0052cc;
 }
