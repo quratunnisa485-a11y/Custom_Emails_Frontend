@@ -1,4 +1,5 @@
 
+/* Root container */
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -6,6 +7,7 @@
   text-align: center;
 }
 
+/* Default Vite React setup styles */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -53,37 +55,37 @@ body {
   font-family: sans-serif;
 }
 
-
+/* ==== Navbar Styling ==== */
 .navbar {
-  background-color: #e6f0fa; 
-  color: #0a1f44; 
+  background-color: #e6f0fa; /* Light blue from logo background */
+  color: #0a1f44; /* Dark blue from logo */
   padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
-
+/* Left side: logo + brand + menu links */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 1.5rem; 
+  gap: 1.5rem; /* Space between menu items */
 }
 
 .navbar-logo {
-  height: 48px;
+  height: 32px;
   width: auto;
 }
 
 .navbar-brand {
   font-weight: bold;
-  font-size: 1.2rem; 
+  font-size: 1.1rem;
   color: #0a1f44;
 }
 
-
+/* Menu links */
 .nav-link {
   color: #0a1f44;
   font-weight: bold;
@@ -99,20 +101,16 @@ body {
   box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
 }
 
-
+/* Active tab highlight */
 .nav-link.active {
   background: rgba(10, 31, 68, 0.2);
   color: #0a1f44;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.08);
 }
 
-
-.navbar-right {
-  padding-right: 1rem; 
-}
-
+/* Right side: logout button */
 .sign-in-btn {
-  background-color: #0a1f44; 
+  background-color: #0a1f44; /* Dark blue */
   border: none;
   padding: 0.5rem 1.2rem;
   color: white;
