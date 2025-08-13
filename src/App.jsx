@@ -36,7 +36,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img
-          src="/logo.png" 
+          src="/MailMatrix Logo Design.png" 
           alt="Logo"
           className="navbar-logo"
         />
