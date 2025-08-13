@@ -109,6 +109,11 @@ body {
 }
 
 /* Right side: logout button */
+/* Right side: logout button container */
+.navbar-right {
+  padding-right: 0.8rem; /* Added space from right border */
+}
+
 .sign-in-btn {
   background-color: #0a1f44; /* Dark blue */
   border: none;
