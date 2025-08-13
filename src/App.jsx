@@ -40,23 +40,44 @@ function Navbar() {
           alt="Logo"
           className="navbar-logo"
         />
-        <span className="navbar-brand">YourAppName</span>
-        <NavLink to="/dashboard" className="nav-link">
+        <span className="navbar-brand">MailMatrix</span>
+
+        <NavLink 
+          to="/dashboard" 
+          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+        >
           Dashboard
         </NavLink>
-        <NavLink to="/user-management" className="nav-link">
+
+        <NavLink 
+          to="/user-management" 
+          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+        >
           User Management
         </NavLink>
-        <NavLink to="/personal-emails" className="nav-link">
+
+        <NavLink 
+          to="/personal-emails" 
+          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+        >
           Personal Emails
         </NavLink>
-        <NavLink to="/domain-emails" className="nav-link">
+
+        <NavLink 
+          to="/domain-emails" 
+          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+        >
           Domain Emails
         </NavLink>
-        <NavLink to="/custom-emails" className="nav-link">
+
+        <NavLink 
+          to="/custom-emails" 
+          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
+        >
           Custom Emails
         </NavLink>
       </div>
+
       <div className="navbar-right">
         <button className="sign-in-btn" onClick={handleLogout}>
           Logout
