@@ -109,23 +109,21 @@ body {
 }
 
 /* Right side: logout button */
-/* Right side: logout button container */
-.navbar-right {
-  padding-right: 0.8rem; /* Added space from right border */
-}
+
 
 .sign-in-btn {
   background-color: #0a1f44; /* Dark blue */
   border: none;
   padding: 0.5rem 1.2rem;
   color: white;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.25s ease, transform 0.2s ease;
+  margin-right: 20px;
 }
 
 .sign-in-btn:hover {
