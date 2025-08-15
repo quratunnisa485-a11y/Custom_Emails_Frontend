@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   NavLink,
@@ -25,6 +24,7 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Hide Navbar on login and root path
   if (location.pathname === "/login" || location.pathname === "/") return null;
 
   const handleLogout = () => {
@@ -36,42 +36,42 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <img
-          src="/MailMatrix Logo Design.png" 
+          src="/MailMatrix Logo Design.png"
           alt="Logo"
           className="navbar-logo"
         />
         <span className="navbar-brand">MailMatrix</span>
 
-        <NavLink 
-          to="/dashboard" 
+        <NavLink
+          to="/dashboard"
           className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
         >
           Dashboard
         </NavLink>
 
-        <NavLink 
-          to="/user-management" 
+        <NavLink
+          to="/user-management"
           className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
         >
           User Management
         </NavLink>
 
-        <NavLink 
-          to="/personal-emails" 
+        <NavLink
+          to="/personal-emails"
           className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
         >
           Personal Emails
         </NavLink>
 
-        <NavLink 
-          to="/domain-emails" 
+        <NavLink
+          to="/domain-emails"
           className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
         >
           Domain Emails
         </NavLink>
 
-        <NavLink 
-          to="/custom-emails" 
+        <NavLink
+          to="/custom-emails"
           className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
         >
           Custom Emails
@@ -89,80 +89,78 @@ function Navbar() {
 
 function App() {
   return (
-    <Router>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <Navbar />
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
+          flex: 1,
+          overflowY: "auto",
+          padding: "1rem",
         }}
       >
-        <Navbar />
-        <div
-          style={{
-            flex: 1,
-            overflowY: "auto",
-            padding: "1rem",
-          }}
-        >
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<Navigate to="/login" replace />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/user-management"
-              element={
-                <ProtectedRoute>
-                  <UserManagement />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/personal-emails"
-              element={
-                <ProtectedRoute>
-                  <PersonalEmails />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/custom-emails"
-              element={
-                <ProtectedRoute>
-                  <CustomEmails />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/domain-emails"
-              element={
-                <ProtectedRoute>
-                  <DomainEmails />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </div>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          pauseOnHover
-          draggable
-        />
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<Navigate to="/login" replace />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user-management"
+            element={
+              <ProtectedRoute>
+                <UserManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/personal-emails"
+            element={
+              <ProtectedRoute>
+                <PersonalEmails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/custom-emails"
+            element={
+              <ProtectedRoute>
+                <CustomEmails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/domain-emails"
+            element={
+              <ProtectedRoute>
+                <DomainEmails />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </div>
-    </Router>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
+    </div>
   );
 }
 
