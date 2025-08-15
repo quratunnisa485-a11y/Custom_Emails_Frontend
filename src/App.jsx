@@ -7,7 +7,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
 import LoginPage from "./pages/LoginPage";
 import UserManagement from "./pages/UserManagement";
@@ -24,12 +24,12 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Hide Navbar on login and root path
+  
   if (location.pathname === "/login" || location.pathname === "/") return null;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -42,38 +42,23 @@ function Navbar() {
         />
         <span className="navbar-brand">MailMatrix</span>
 
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-        >
+        <NavLink to="/dashboard" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>
           Dashboard
         </NavLink>
 
-        <NavLink
-          to="/user-management"
-          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-        >
+        <NavLink to="/user-management" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>
           User Management
         </NavLink>
 
-        <NavLink
-          to="/personal-emails"
-          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-        >
+        <NavLink to="/personal-emails" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>
           Personal Emails
         </NavLink>
 
-        <NavLink
-          to="/domain-emails"
-          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-        >
+        <NavLink to="/domain-emails" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>
           Domain Emails
         </NavLink>
 
-        <NavLink
-          to="/custom-emails"
-          className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-        >
+        <NavLink to="/custom-emails" className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}>
           Custom Emails
         </NavLink>
       </div>
@@ -89,25 +74,16 @@ function Navbar() {
 
 function App() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-      }}
-    >
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Navbar />
-      <div
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "1rem",
-        }}
-      >
+      <div style={{ flex: 1, overflowY: "auto", padding: "1rem" }}>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<Navigate to="/login" replace />} />
+
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={
@@ -145,6 +121,16 @@ function App() {
             element={
               <ProtectedRoute>
                 <DomainEmails />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Catch-all Route (404 redirect to dashboard if logged in) */}
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <Navigate to="/dashboard" />
               </ProtectedRoute>
             }
           />
