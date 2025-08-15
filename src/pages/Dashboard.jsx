@@ -153,7 +153,7 @@ const Dashboard = () => {
         <div className="info-card blue">👥 Total Users: {totalUsers}</div>
         <div className="info-card green">🟢 Active Users: {activeUsers}</div>
         <div className="info-card red">🔴 Inactive Users: {inactiveUsers}</div>
-        <div className="info-card purple">📬 Sender mails: {verifiedSenders}</div>
+        <div className="info-card purple">📬 Sender Mails: {verifiedSenders}</div>
       </div>
 
       <div className="charts-grid">

@@ -49,7 +49,7 @@ const Login = () => {
         <div className="left-message text-center text-md-start mb-4 mb-md-0">
           <h1>Welcome!</h1>
           <p>
-            Effortlessly write, manage, and send custom emails — all from one
+            Effortlessly write, manage, and send custom emails all from one
             place. Choose your sender email, type your message, and hit send.
           </p>
         </div>
