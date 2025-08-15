@@ -42,15 +42,7 @@ body, html {
   overflow-y: auto;
 }
 
-.left-message {
-  flex: 1;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px 40px;
-  text-align: left;
-}
+
 
 .left-message h1 {
   font-size: 3rem;

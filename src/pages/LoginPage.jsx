@@ -50,7 +50,7 @@ const Login = () => {
           <h1>Welcome!</h1>
           <p>
             Effortlessly write, manage, and send custom emails all from one
-            place.Choose your <br>sender mail, type your message, and hit send.</br>
+            place.Choose your sender mail, type your message, and hit send.
           </p>
         </div>
 
