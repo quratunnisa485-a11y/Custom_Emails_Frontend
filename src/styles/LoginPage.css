@@ -106,17 +106,24 @@ body, html {
     max-height: none;
     height: auto;
   }
-
- .left-message {
+.left-message {
   flex: 1;
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 20px 10px; 
+  justify-content: center;  /* Vertically center */
+  align-items: flex-start;  /* Left align */
+  padding: 20px 10px;
   text-align: left;
-   margin-left: -30px;
+  margin-left: -30px;
+  height: 100%;
 }
+
+.left-message h1,
+.left-message p {
+  color: #ffffff;  /* Make text white */
+}
+
 
 
   .left-message h1 {
